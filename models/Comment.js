@@ -16,7 +16,6 @@ Comment.init(
       allowNull: false,
       validate: {
         len: [4],
-      
       },
       user_id: {
         type: DataTypes.INTEGER,
@@ -39,7 +38,7 @@ Comment.init(
         allowNull: false,
         defaultValue: DataTypes.NOW,
       },
-    }
+    },
   },
 
   {
