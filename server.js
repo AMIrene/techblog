@@ -11,8 +11,8 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-//helpers for handlebars 
-// const hbs = exphbs.create({ helpers });
+// helpers for handlebars 
+const hbs = exphbs.create({ helpers });
 
 const sess = {
   secret: "Super secret secret",
