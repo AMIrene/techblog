@@ -8,4 +8,10 @@ router.use('/', homeRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/api', apiRoutes);
 
+//if error and above pages can't be found - throw error page
+
+router.use((req, res) => {
+    res.status(404).end();
+});
+
 module.exports = router;
