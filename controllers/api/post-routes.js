@@ -11,30 +11,12 @@ router.get('/', (req, res) => {
     Post.findall({
         attributes: [
             'id',
-            'content',
+            'post_content',
             'title',
-            'date_created'
+           
         
         ],
-        //sort posts by date created by recent to oldest
-
-        order: [['date_created', 'DESC']],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            },
-
-            {
-                model: Comment,
-                attributes: ['id', 'comment_content', 'post_id', 'user_id', 'date_created'],
-                include: {
-                    model: User,
-                    attributes: ['username']
-                }
-            }
-            
-        ]
+ 
     })
 
         //get the posts
@@ -47,16 +29,17 @@ router.get('/', (req, res) => {
 
 //get a single post using ID
 
-router.get('/:id', (req, res => {
+router.get('/:id', (req, res) => {
     Post.findOne({
         where: {
             id: req.params.id
         },
         attributes: [
             'id',
-            'content',
+            'post_content',
             'title',
-            'date_created'
+            'created at'
+            
         
         ],
         include: [
@@ -67,7 +50,7 @@ router.get('/:id', (req, res => {
             {
 
                 model: Comment,
-                attributes: ['id', 'comment_content', 'post_id', 'user_id', 'date_created'],
+                attributes: ['id', 'comment_content', 'post_id', 'user_id'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -89,7 +72,7 @@ router.get('/:id', (req, res => {
             res.status(500).json(err);
         });
 
-}));
+});
   //create or add a new post
 router.post('/', withAuth, (req, res) => {
     Post.create({

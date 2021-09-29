@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'content',
-            'date_created'
+           
         ],
         include: [{
             model: Comment,
-            attributes: ['id', 'comment_content', 'post_id', 'date_created'],
+            attributes: ['id', 'comment_content', 'post_id'],
             include: {
                 model: User,
                 attributes: ['username']
@@ -48,11 +48,11 @@ router.get('post/:id', (req, res) => {
             'id',
             'title',
             'content',
-            'date_created'
+            
         ],
         include: [{
             model: Comment,
-            attributes: ['id', 'comment_content', 'post_id', 'date_created'],
+            attributes: ['id', 'comment_content', 'post_id'],
             include: {
                 model: User,
                 attributes: ['username']
@@ -69,19 +69,23 @@ router.get('post/:id', (req, res) => {
                 res.status(404).json({ message: 'There are no posts with this id' });
                 return;
             }
-        })
+        }) .catch(err => {
+            // if server error, return error
+            console.log(err);
+            res.status(500).json(err);
+          });
     const post = dbPostData.get({ plain: true });
-    res.sender('singlepost', {
+    res.render('singlepost', {
         post,
         loggedIn: req.session.loggedIn
     });
 })
 
-.catch(err => {
-    // if server error, return error
-    console.log(err);
-    res.status(500).json(err);
-  });
+// .catch(err => {
+//     // if server error, return error
+//     console.log(err);
+//     res.status(500).json(err);
+//   });
 
   router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
