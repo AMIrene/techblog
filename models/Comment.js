@@ -19,8 +19,8 @@ Comment.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                // comment must be at least one character long
-                len: [1]
+                // comment must be at least two characters long
+                len: [2]
             }
         },
         user_id: {
