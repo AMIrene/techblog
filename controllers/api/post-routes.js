@@ -8,13 +8,12 @@ const withAuth = require('../../utils/auth');
 
 //routes
 router.get('/', (req, res) => {
-    Post.findall({
+    Post.findAll({
         attributes: [
             'id',
             'post_content',
             'title',
-           
-        
+                  
         ],
  
     })
