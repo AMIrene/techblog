@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'post_content',
            
         ],
         include: [{
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
         .then(dbPostData => {
             //// If plain is true, then sequelize will only return the first
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.sender('homepage', {
+            res.render('homepage', {
                 posts,
                 loggedIn: req.session.loggedIn
             });
@@ -47,7 +47,7 @@ router.get('post/:id', (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'post_content',
             
         ],
         include: [{

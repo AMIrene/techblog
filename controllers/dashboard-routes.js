@@ -12,7 +12,7 @@ router.get('/', withAuth, (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'post_content',
            
         ],
         include: [
@@ -21,7 +21,7 @@ router.get('/', withAuth, (req, res) => {
                 attributes: ['id', 'comment_content', 'post_id', 'user_id'],
                 include: {
                     model: User,
-                    attribues: ['username']
+                    attributes: ['username']
 
                 }
                 
@@ -54,7 +54,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'post_content',
             
         ],
         include: [
@@ -63,7 +63,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 attributes: ['id', 'comment_content', 'post_id', 'user_id'],
                 include: {
                     model: User,
-                    attribues: ['username']
+                    attributes: ['username']
 
                 }
                 
